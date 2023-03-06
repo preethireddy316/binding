@@ -1,0 +1,47 @@
+<p>contact-form works!</p>
+<form (ngSubmit)="onSubmit()" #myform="ngForm">
+<div ngModelGroup="personDetail" #personDetails="ngModelGroup">
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input #fname="ngModel" [(ngModel)]="firstname" name="firstName" type="text" class="form-control" id="firstName" required>
+        <small *ngIf="fname.touched && fname.invalid">first name required</small>
+        <span *ngIf="firstname">you entered {{firstname}}</span>
+    </div>
+    <label id="email">Email</label>
+    <input for="email" class = "form-control" type="text" name="email" email required ngModel/>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea ngModel name="comment" type="text" class="form-control" id="comment" rows="5" columns="20"></textarea>
+    </div>
+    <small *ngIf ="personDetails.invalid && personDetails.touched">Some fields have no valid data</small>
+    <input type="button" (click)="setDefaultValues()"/>
+</div>
+<label for="country">Country</label>
+<select id="country" [ngModel]="defaultcountry" name="country">
+    <option>India</option>
+    <option>USA</option>
+    <option>Canada</option>
+</select>
+<br><br>
+
+<label>Gender</label>
+<br><br>
+<div *ngFor="let g of gender">
+<input ngModel type="radio" id={{g.id}} [ngModel]="defaultgender"  value={{g.value}} name="gender"/>
+<label for={{g.id}}>{{g.value}}</label>
+</div>
+<br><br>
+
+<label>Hobbies</label>
+<br><br>
+<label><input type="checkbox" ngModel name="hobbies" value="reading" ngModel/>Reading</label>
+<label><input type="checkbox" ngModel name="hobbies" value="swimming" ngModel/>Swimming</label>
+<label><input type="checkbox" ngModel name="hobbies" value="jogging" ngModel/>Jogging</label>
+
+
+<br><br>
+
+
+<input type="submit" class="btn btn-primary"/>
+</form>
+<!-- [disabled]="!myform.valid" -->

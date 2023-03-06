@@ -5,6 +5,17 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  title = 'binding';
+  courses=[1,2]
+  viewMode="map"
+
+post={
+isFavorite:true
+}
+
+onFavChange(args:{value:boolean}){
+  console.log("span changed",args)
+}
+
 }

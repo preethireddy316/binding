@@ -1,0 +1,13 @@
+.active{
+    background-color: blue;
+}
+
+.item{
+    display: flex;
+    list-style-type: none;
+}
+
+.i{
+    padding: 20px;
+    margin:10px;
+}

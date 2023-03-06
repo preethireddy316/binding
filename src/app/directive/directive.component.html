@@ -1,0 +1,15 @@
+<ul>
+
+    <!-- <li *ngFor="let course of courses; index as i">{{i}}-{{course.name}}</li> -->
+
+
+    <!-- <li *ngFor="let course of courses; even as isEven">{{course.name}}
+<span *ngIf = "isEven">(Even)</span> </li> -->
+
+<button (click)="loadCourses()">load courses</button>
+<button (click)="onAdd()">Add</button>
+<li *ngFor ="let course of courses trackBy:trackCourse">  {{course.name}}
+    <button (click)="onRemove(course)">Remove</button>
+</li>    
+
+</ul>

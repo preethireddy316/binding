@@ -1,0 +1,63 @@
+<p>reactive-form works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+    <div formGroupName="account">
+        <div *ngIf="reactiveForm.errors" class="alert alert-danger">doesnot match</div>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input formControlName="firstname" type="text" class="form-control" id="firstName">
+        </div>
+        <div *ngIf ="firstname?.['pending']"> checking for uniqueness</div>
+        <div *ngIf="firstname?.['touched'] && firstname?.['invalid']" class="alert alert-danger">
+            <span *ngIf="firstname?.errors?.['required']">firstname is required</span>
+            <br><br><span *ngIf="firstname?.errors?.['minlength']">min 3 characters required</span>
+            <br><br><span *ngIf="firstname?.errors?.['cannotContainSpace']">cannot contain space</span>
+            <br><br><span *ngIf="firstname?.errors?.['shouldBeUnique']">firstname should be unique</span>
+            <!-- </div>{{firstname.error.minlength.requiredLength}} -->
+    </div>
+        <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input formControlName="lastname" type="text" class="form-control" id="lastame">
+        </div>
+    
+    </div>
+
+    <label id="email">Email</label>
+    <input for="email" class = "form-control" type="text" formControlName="email"/>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea name="comment" type="text" class="form-control" id="comment" rows="5" columns="20"></textarea>
+    </div>
+
+<label for="country">Country</label>
+<select id="country" formControlName="country">
+    <option value="india">India</option>
+    <option>USA</option>
+    <option>Canada</option>
+</select>
+<br><br>
+
+<label>Gender</label>
+<br><br>
+<div>
+<input type="radio" id="male" value="male" formControlName="gender"/>
+<label for="male">Male</label>
+<input type="radio" id="female" value="female" formControlName="gender"/>
+<label for="female">Female</label>
+<input type="radio" id="other"  value="other" formControlName="gender"/>
+<label for="other">other</label>
+</div>
+<br><br>
+
+<label>Hobbies</label>
+<br><br>
+<label><input type="checkbox"  formControlName="hobbies" value="reading" />Reading</label>
+<label><input type="checkbox"  formControlName="hobbies" value="swimming" />Swimming</label>
+<label><input type="checkbox"  formControlName="hobbies" value="jogging" />Jogging</label>
+<br><br>
+<input type="text" (keyup.enter)="addTopic(topic)" #topic/>
+<input type="submit" class="btn btn-primary"/>
+<ul>
+    <li *ngFor="let topic of topics.controls" (click)="remove(topic)">{{topic.value}}</li>
+</ul>
+</form>
+<!-- [disabled]="!myform.valid" -->

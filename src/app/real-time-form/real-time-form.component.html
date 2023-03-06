@@ -1,0 +1,176 @@
+<p>real-time-form works!</p>
+<form [formGroup]="form">
+    <!-- (ngSubmit)="onSubmit()" -->
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input formControlName="firstname"  type="text" class="form-control" id="firstName">
+        <button (click)="singleEnableDisable(firstname,firstname?.['enabled'])">{{firstname?.['disabled']?'Enable':'disable'}}</button>
+        <div *ngIf="firstname?.['touched'] && firstname?.['invalid']">
+            <small class="alert alert-danger" *ngIf ="firstname?.errors?.['required']">First Name is Required</small>
+            <small class="alert alert-danger" *ngIf ="firstname?.errors?.['maxlength']">Maximum 6 characters are Required</small>
+            <small *ngIf="firstname?.errors?.['cannotContainSpace']">cannot contain space</small>
+        </div>
+    </div>   
+    <!-- <div *ngIf="firstname?.['touched'] && firstname?.['invalid']" class="alert alert-danger">
+    <small class="alert alert-danger" *ngIf ="firstname?.errors?.['required']">First Name is Required</small>
+    </div> -->
+    <!-- <div *ngIf="form.get('firstname').touched && form.get('firstname').invalid" class="alert alert-danger"> -->
+        <!-- <span *ngIf="form.get('firstname').errors?.['required']">firstname is required</span> -->
+        <!-- <br><br><span *ngIf="firstname?.errors?.['minlength']">min {{form.get('firstname').controls['minlength.requiredLength']}} characters required</span> -->
+        <!-- <br><br><span *ngIf="firstname?.errors?.['cannotContainSpace']">cannot contain space</span>
+        <br><br><span *ngIf="firstname?.errors?.['shouldBeUnique']">firstname should be unique</span> -->
+        <!-- </div>{{firstname.error.minlength.requiredLength}} -->
+    <!-- </div> -->
+
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input formControlName="lastname" type="text" class="form-control" id="lastName">
+        <button (click)="singleEnableDisable(lastname,lastname?.['enabled'])">{{lastname?.['disabled']?'Enable':'disable'}}</button>
+
+    </div> 
+    <div *ngIf="lastname?.['touched'] && lastname?.['invalid'] || lastname?.['dirty']">
+        <small class="alert alert-danger" *ngIf ="lastname?.errors?.['required']">Last Name is Required</small>
+        <br><br>
+        <small *ngIf="lastname?.errors?.['cannotContainSpace']">cannot contain space</small>
+    
+    </div>
+
+    <div class="form-group">
+        <label for="userName">User Name</label>
+        <input formControlName="username" type="text" class="form-control" id="userName">
+        <button (click)="singleEnableDisable(username,username?.['enabled'])">{{username?.['disabled']?'Enable':'disable'}}</button>
+
+    </div> 
+    <div *ngIf="username?.['touched'] && username?.['invalid'] || username?.['dirty']">
+        <small class="alert alert-danger" *ngIf ="username?.errors?.['required']">User Name is Required</small>
+        <br><br>
+        <small *ngIf="username?.errors?.['cannotContainSpace']">cannot contain space</small>
+    
+    </div>
+    
+    <div class="form-group">
+        <label id="email">Email</label>
+        <input for="email" class = "form-control" type="text" formControlName="email"/>
+        <button (click)="singleEnableDisable(email,email?.['enabled'])">{{email?.['disabled']?'Enable':'disable'}}</button>
+
+    </div>
+    <div *ngIf="email?.['touched']  && email?.['invalid'] || email?.['dirty']">
+        <small class="alert alert-danger" *ngIf ="email?.errors?.['required']">Email is Required</small>
+        <br><br>
+        <small class="alert alert-danger" *ngIf ="email?.errors?.['email']">Enter a valid email</small>
+        </div>
+    
+        <div class="form-group">
+            <label id="mobile">Mobile</label>
+            <input for="mobile" class = "form-control" type="text" formControlName="mobile"/>
+            <button (click)="singleEnableDisable(mobile,mobile?.['enabled'])">{{mobile?.['disabled']?'Enable':'disable'}}</button>
+        </div>
+        <div *ngIf="mobile?.['touched'] && mobile?.['invalid'] || mobile?.['dirty']">
+            <small class="alert alert-danger" *ngIf ="mobile?.errors?.['required']">Mobile number is Required</small>
+            <br><br>
+            <small class="alert alert-danger" *ngIf ="mobile?.errors?.['pattern']">Enter a valid Mobile number</small>
+            <br><br>
+            <small class="alert alert-danger" *ngIf ="mobile?.errors?.['minlength']">Minimum 10 digits are Required</small>
+            <br><br>
+            <small class="alert alert-danger" *ngIf ="mobile?.errors?.['maxlength']">Maximum 10 digits are Required</small>
+        </div>
+
+    <div class="form-group">
+        <label id="DOB">Date Of Birth</label>
+        <input for="DOB" class = "form-control" type="date" formControlName="dob"/>
+        <button (click)="singleEnableDisable(dob,dob?.['enabled'])">{{dob?.['disabled']?'Enable':'disable'}}</button>
+    </div>
+    <div *ngIf="dob?.['touched'] && dob?.['invalid'] || dob?.['dirty']">
+        <small class="alert alert-danger" *ngIf ="dob?.errors?.['required']">Date of Birth is Required</small>
+        </div>
+
+        <div class="form-group">
+            <label id="age">Age</label>
+            <input for="age" class = "form-control" type="text" formControlName="age"/>
+            <button (click)="singleEnableDisable(age,age?.['enabled'])">{{age?.['disabled']?'Enable':'disable'}}</button>
+
+        </div>
+        <div *ngIf="age?.['touched'] && age?.['invalid'] || age?.['dirty']">
+        <small class="alert alert-danger" *ngIf ="age?.errors?.['required']">Age is Required</small>
+        <small class="alert alert-danger" *ngIf ="age?.errors?.['min']">Minimum age is 18</small>
+        <small class="alert alert-danger" *ngIf ="age?.errors?.['pattern']">Enter a valid number</small>
+    </div>
+    
+
+    <div class="form-group">
+    <label for="country1">Country</label>
+    <select id="country1" formControlName="country">
+        <option value="" id="0">Please Select</option>
+        <option value="india" id="1">India</option>
+        <option value="usa" id="2">USA</option>
+        <option value="Canada" id="3">Canada</option>
+    </select>
+    <button (click)="singleEnableDisable(country,country?.['enabled'])">{{country?.['disabled']?'Enable':'disable'}}</button>
+
+    </div>
+    <div *ngIf="country?.['touched'] && country?.['invalid'] && country?.['dirty']">
+        <small class="alert alert-danger" *ngIf ="country?.errors?.['required']">country is Required</small>
+        </div>
+
+
+<label>Gender</label>
+<br><br>
+<div>
+<input type="radio" id="male" value="male" formControlName="gender"/>
+<label for="male">Male</label>
+<input type="radio" id="female" value="female" formControlName="gender"/>
+<label for="female">Female</label>
+<input type="radio" id="other"  value="other" formControlName="gender"/>
+<label for="other">other</label>
+</div>
+<button (click)="singleEnableDisable(gender,gender?.['enabled'])">{{gender?.['disabled']?'Enable':'disable'}}</button>
+
+<div *ngIf="gender?.['touched'] && gender?.['invalid']">
+    <small class="alert alert-danger" *ngIf ="gender?.errors?.['required']">gender is Required</small>
+    </div>
+<br><br>
+
+<!-- <label for="hobbies">Hobbies</label>
+<br/>
+<label><input type="checkbox" formControlName="hobbies" value="reading" />Reading</label>
+<label><input type="checkbox"  formControlName="hobbies" value="swimming" />Swimming</label>
+<label><input type="checkbox"  formControlName="hobbies" value="jogging" />Jogging</label>
+<br><br>
+<div *ngIf="hobbies?.['touched'] && hobbies?.['invalid']" class="alert alert-danger">
+    <small class="alert alert-danger" *ngIf ="hobbies?.errors?.['required']">hobbies Required</small>
+    </div>
+<br><br> -->
+
+<label><input type="checkbox"  formControlName="remember" value="remember" />Remember Me</label>
+<button (click)="singleEnableDisable(remember,remember?.['enabled'])">{{remember?.['disabled']?'Enable':'disable'}}</button>
+
+<div *ngIf="remember?.['touched'] && remember?.['invalid']">
+    <small class="alert alert-danger" *ngIf ="remember?.errors?.['required']">remember is Required</small>
+    </div>
+<br><br>
+<button (click)="onReset()">Reset</button>
+<button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
+<button (click)="disableOrenable()">{{isEnabled?'Disable All':'Enable All'}}</button>
+
+</form>
+
+<table>
+    <tr>
+        <th>   
+        </th>
+    </tr>
+</table>
+<!-- <div>
+    <h1>Form Data</h1>
+    <p>First Name : {{firstName}},  valid:{{firstname?.['errors']==null}}</p>
+        <p>Last Name : {{lastName}},  valid:{{lastname?.['errors']==null}}</p>
+        <p>userName:{{userName}}, valid:{{username?.['errors']==null}}</p>
+        <p>email:{{Email}}, valid:{{email?.['errors']==null}}</p>
+        <p>dob:{{Dob}}, valid:{{dob?.['errors']==null}}</p>
+        <p>age:{{Age}}, valid:{{age?.['errors']==null}}</p>
+        <p> Gender: {{Gender}}, valid:{{gender?.['errors']==null}}</p>
+        <p> Country: {{Country}}, valid:{{country?.['errors']==null}}</p>
+        <p> Remember: {{Remember}}, valid:{{remember?.['errors']==null}}</p>
+        <p> Mobile: {{Mobile}}, valid:{{mobile?.['errors']==null}}</p>  
+</div> -->
